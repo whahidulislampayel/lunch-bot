@@ -1,0 +1,16 @@
+# Example systemd service. Adjust paths/user, then:
+#   sudo cp lunchbot.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now lunchbot
+[Unit]
+Description=Taghyeer Lunch Bot
+After=network-online.target
+
+[Service]
+WorkingDirectory=/opt/lunch-bot
+ExecStart=/opt/lunch-bot/.venv/bin/python bot.py
+Restart=always
+RestartSec=5
+User=lunchbot
+
+[Install]
+WantedBy=multi-user.target
